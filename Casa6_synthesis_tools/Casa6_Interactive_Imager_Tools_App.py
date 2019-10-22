@@ -45,17 +45,34 @@ app.layout = html.Div(children=[
             html.Div(id='cycleniter_message',
                      children='Cycleniter ')
         ], style={'width': '30%', 'display': 'inline-block','vertical-align':'top'}),
-        
-        html.Button('Stop', id='stop_button'),
-], 
-             style={'width': '50%', 'display': 'inline-block','vertical-align':'top'}),
 
+        html.Div([ 
+            html.Button('Stop', id='stop_button'),
+#            dcc.Input(id='input_niter', type='number', value=100),
+#            html.Div(id='niter_message',
+#                     children='Niter ')
+        ], style={'width': '30%', 'display': 'inline-block','vertical-align':'top'}),
+        
+    ], 
+             style={'width': '50%', 'display': 'inline-block','vertical-align':'top'}),
+    
     html.Div(children=[
         dcc.Graph(id='iter_plot') ], 
              style={'width': '50%', 'display': 'inline-block','vertical-align':'top'})
-
+    
 ]
-)
+                  )
+
+#@app.callback(
+#[ Output('niter_message', 'children') ],
+#[ Input( 'input_niter', 'value') ]
+#)
+#def update_output( niter ):
+#    if niter != None:
+#        imcl.set_niter( int(niter) )
+#    else:
+#        print ('niter is None. No change')
+#    return ['Niter : {}'.format( imcl.get_niter() )]
 
 @app.callback(
 [ Output('cycleniter_message', 'children') ],
