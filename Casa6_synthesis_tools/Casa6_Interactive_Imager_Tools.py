@@ -139,7 +139,13 @@ class ImageCleaner():
         iterbotrec = self.ib.getminorcyclecontrols()
         self.ib.resetminorcycleinfo()
 
+        iterbotrec['cycleniter'] = self.cycleniter
+
+        #print("Iterbotrec = " + str(iterbotrec))
+
         exrec = self.sd.executeminorcycle( iterbotrecord = iterbotrec )
+
+        #print("Exrec = " + str(exrec))
 
         self.ib.mergeexecrecord( exrec )
 
@@ -224,6 +230,9 @@ class ImageCleaner():
         
     def set_cycleniter(self, cnit):
         self.cycleniter= cnit #np.min( [ cnit, self.niter-self.itercount ] )
+
+    def set_niter(self, cnit):
+        self.niter= cnit #np.min( [ cnit, self.niter-self.itercount ] )
 
 
 #  To run the above....
