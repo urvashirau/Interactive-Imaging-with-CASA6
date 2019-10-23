@@ -104,12 +104,15 @@ def update_figure(cont_clicks, stop_clicks, selected_data, add_erase):
 
     if ctx.triggered[0]['prop_id'].count('selectedData')>0:
         if selected_data != None:
+#            print(selected_data)
             if 'range' in selected_data.keys() :
-                #print(selected_data['range'])
                 imcl.update_mask( selected_data['range'], add_erase )
                 residual,mask = imcl.get_residual_and_mask()
+            elif 'lassoPoints' in selected_data.keys():
+                imcl.update_mask( selected_data['lassoPoints'], add_erase, ffill=True )
+                residual,mask = imcl.get_residual_and_mask()
             else:
-                print("Only box region selection is currently supported")
+                print("Only box and lasso region selection is currently supported")
 
     if ctx.triggered[0]['prop_id'].count('button')>0:
     
