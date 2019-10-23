@@ -2,7 +2,7 @@
 
 Experiments using dash/plotly with casa6 to implement interactive mask drawing 
 
-To run, install dash in a python3 environment, start as "python Example_Interactive_Imager_App.py", and point a browser to http://127.0.0.1:8050
+To run, install numpy,matplotlib,dash,scikit-image in a python3 environment, start as "python Example_Interactive_Imager_App.py", and point a browser to http://127.0.0.1:8050
 
 (1) Example_no_Casa6 : An example of a dash application that allows interactive mask drawing and iteration control. This uses a fake image reconstruction class that operates with noise and a few bright spots.
 
