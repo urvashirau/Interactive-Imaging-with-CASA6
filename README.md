@@ -11,3 +11,8 @@ To run, install dash in a python3 environment, start as "python Example_Interact
 (3) Casa6_synthesis_tools : An example using the synthesisXXXX tools. This includes mask drawing as well as iteration control similar to the example in (1). 
 
 DATA : Within NRAO, copy over :  /home/casa/data/trunk/regression/unittest/clean/refimager/refim_point.ms     as   point.ms in your local directory. 
+
+
+An example Screenshot from the Casa6_synthesis_tools version is shown below. A single point source (the above MS) is imaged with user-controlled values of 'cycleniter' before each major cycle and an interactively-drawn mask. 
+
+![Demo](./Casa6_synthesis_tools/example_intclean_app1.png)
