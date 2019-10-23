@@ -183,25 +183,41 @@ class ImageCleaner():
         self.ib.done()
 
 
-    def update_mask(self, xyrange={}, add_erase='add'):
-        xmin = int( np.min( xyrange['x'] ) )
-        xmax = int( np.max( xyrange['x'] ) )
-        ymin = int( np.min( xyrange['y'] ) )
-        ymax = int( np.max( xyrange['y']) )
+    def update_mask(self, xyrange={}, add_erase='add', ffill=False):
 
         self.ia.open(self.imagename+'.mask')
         pix = self.ia.getchunk()
-        if add_erase=='add':
-            pix[ xmin:xmax, ymin:ymax, 0,0 ] = 1.0
-        else:
-            pix[ xmin:xmax, ymin:ymax, 0,0 ] = 0.0
-            
+
+        if ffill==False:
+            xmin = int( np.min( xyrange['x'] ) )
+            xmax = int( np.max( xyrange['x'] ) )
+            ymin = int( np.min( xyrange['y'] ) )
+            ymax = int( np.max( xyrange['y']) )
+
+            if add_erase=='add':
+                pix[ xmin:xmax, ymin:ymax, 0,0 ] = 1.0
+            else:
+                pix[ xmin:xmax, ymin:ymax, 0,0 ] = 0.0
+
+        else:  # flood fill 
+            if add_erase=='add':
+                self.poly_fill( xyrange['x'], xyrange['y'], pix, 1.0 )
+            else:
+                self.poly_fill( xyrange['x'], xyrange['y'], pix, 0.0 )
+
         self.ia.putchunk( pix )
         self.ia.close()
 
         ## Send this to the deconvolver
         #self.sd.setupmask()
-    
+
+    def poly_fill( self, xlist=[], ylist=[], arr=None, aval=1.0 ):
+        from skimage.draw import polygon
+        rr,cc = polygon(xlist,ylist)
+        for ii in range(0,len(rr)):
+            arr[rr,cc] = aval
+        
+
     def get_image(self, imname=''):
         self.ia.open(imname)
         pix = self.ia.getchunk()[:,:,0,0]
