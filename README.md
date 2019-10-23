@@ -16,3 +16,7 @@ DATA : Within NRAO, copy over :  /home/casa/data/trunk/regression/unittest/clean
 An example Screenshot from the Casa6_synthesis_tools version is shown below. A single point source (the above MS) is imaged with user-controlled values of 'cycleniter' before each major cycle and an interactively-drawn mask. 
 
 ![Demo](./Casa6_synthesis_tools/example_intclean_app1.png)
+
+
+
+Note : After running the app, if the server is stopped from the command line but the browser window is still open, you may run into this known dash bug : https://github.com/plotly/dash/issues/920    . The solution for now is to close the browser tab. 
