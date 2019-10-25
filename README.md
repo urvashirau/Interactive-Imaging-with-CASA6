@@ -12,12 +12,14 @@ DATA : Within NRAO, copy over :  /home/casa/data/trunk/regression/unittest/clean
 
 ## To run
 
-### Install python3
+### Install python3 and casa6
 ```
 export PPY=`which python3`
 virtualenv -p $PPY --setuptools ./local_python3
 ./local_python3/bin/pip install --upgrade pip
-./local_python3/bin/pip install --upgrade numpy matplotlib ipython dash scikit-image
+./local_python3/bin/pip install numpy matplotlib ipython dash scikit-image
+./local_python3/bin/pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-group/simple casatools
+./local_python3/bin/pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-group/simple casatasks
 ```
 
 ### Run the app
